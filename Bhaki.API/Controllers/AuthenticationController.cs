@@ -91,8 +91,7 @@ namespace Bhaki.API.Controllers
                     case "SuperUser":
                         await _userManager.AddToRoleAsync(newUser, UserRoles.SuperUser);
                         break;
-                 
-                        break;
+                
                 }
 
                 return Created(nameof(Register), $"User {payload.Email} created");
