@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G3CYh8v4xc9EKxzuu8GFqLZP9ZfsoUQ3z3++OvcTDUUsVZ12LGcj2r8EMjVCHQec2TKDwezsE2oqPH5+p1VwFw==",
+  "dgSpecHash": "y+gF76WtCKM0vDQNZkzGP2CzYtLHAE/hdZwjVxl77/KVOzVWc/HDZCzRTNVpLi17dcccTtAuvBVUmj/P7Cffqw==",
   "success": true,
-  "projectFilePath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
+  "projectFilePath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API2\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.2\\microsoft.aspnetcore.authentication.jwtbearer.5.0.2.nupkg.sha512",

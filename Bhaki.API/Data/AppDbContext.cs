@@ -17,9 +17,9 @@ namespace Bhaki.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Book_Author>()
-            //    .HasOne(b => b.Book)
-            //    .WithMany(ba => ba.Book_Authors)
+            //modelBuilder.Entity<Registration>()
+            //    .HasOne(b => b.student)
+            //    .WithMany(ba => ba.)
             //    .HasForeignKey(bi => bi.BookId);
 
             //modelBuilder.Entity<Book_Author>()

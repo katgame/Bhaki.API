@@ -9035,11 +9035,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
+      "projectUniqueName": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API2\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
       "projectName": "Bhaki.API",
-      "projectPath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
+      "projectPath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API2\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API\\Bhaki.API\\obj\\",
+      "outputPath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API2\\Bhaki.API\\Bhaki.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

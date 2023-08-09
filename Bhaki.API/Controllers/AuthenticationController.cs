@@ -73,14 +73,25 @@ namespace Bhaki.API.Controllers
                     case "Admin":
                         await _userManager.AddToRoleAsync(newUser, UserRoles.Admin);
                         break;
-                    case "Publisher":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Publisher);
+                    case "Clerk":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.Clerk);
                         break;
-                    case "Author":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Author);
+                    case "Assessor":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.Assessor);
                         break;
-                    default:
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                    case "Moderator":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.Moderator);
+                        break;
+                    case "Finance":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.Finance);
+                        break;
+                    case "Manager":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.Manager);
+                        break;
+                    case "SuperUser":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.SuperUser);
+                        break;
+                 
                         break;
                 }
 

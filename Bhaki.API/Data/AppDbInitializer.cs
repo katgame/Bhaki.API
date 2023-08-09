@@ -26,14 +26,22 @@ namespace Bhaki.API.Data
                 if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.Publisher))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Publisher));
+                if (!await roleManager.RoleExistsAsync(UserRoles.SuperUser))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.SuperUser));
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.Author))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Author));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Assessor))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Assessor));
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Moderator))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Moderator));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Finance))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Finance));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Manager))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Manager));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Manager))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Manager));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Clerk))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Clerk));
             }
         }
     }
