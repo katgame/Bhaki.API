@@ -8,9 +8,10 @@ namespace Bhaki.API.Interfaces
     public interface IRegistrationService
     {
         int Register(RegistrationRequest request);
-        List<Registration> GetRegistration();
-        List<Registration> GetRegistration(Guid branchId);
-        List<Registration> GetRegistration(DateTime startDate, DateTime endDate, Guid branchId);
-        List<Registration> GetRegistration(DateTime startDate, DateTime endDate);
+        List<ReportRegistrationResponse> GetRegistration();
+        List<ReportRegistrationResponse> GetRegistration(Guid branchId);
+        List<ReportRegistrationResponse> GetRegistration(DateTime startDate, DateTime endDate, Guid branchId);
+        List<ReportRegistrationResponse> GetRegistration(DateTime startDate, DateTime endDate);
+        DashBoardResponse GetDashboard();
     }
 }

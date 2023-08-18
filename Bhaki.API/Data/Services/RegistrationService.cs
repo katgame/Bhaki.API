@@ -3,6 +3,7 @@ using Bhaki.API.Data.Models;
 using Bhaki.API.Data.ViewModels;
 using Bhaki.API.Enums;
 using Bhaki.API.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,16 @@ namespace Bhaki.API.Data.Services
 {
     public class RegistrationService : IRegistrationService
     {
+        private readonly IBranchService _branchService;
+        private readonly ICourseService _courseService;
         private AppDbContext _dbContext;
-        public RegistrationService(AppDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public RegistrationService(AppDbContext context, IBranchService branchService, UserManager<ApplicationUser> userManager, ICourseService courseService)
         {
+            _branchService = branchService;
             _dbContext = context;
+            _userManager = userManager;
+            _courseService = courseService;
         }
 
 
@@ -60,42 +67,224 @@ namespace Bhaki.API.Data.Services
                     IdNumber = request.IdNumber,
                     Name = request.Name,
                     PassportNumber = string.Empty,
-                    Surname = request.Surname,
-                    UserAccount = new UserAccount
-                    {
-                        Id = Guid.NewGuid(),
-                        UserId = userID,
-                        OutstandingAmount = request.Balance,
-                        CourseId = Guid.NewGuid(),
-                        CreatedOn = DateTime.UtcNow,
-                        PaidAmount = request.AmountPaid,
-                        Status = AccountStatus.Outstanding
-                    }
+                    Surname = request.Surname
                 },
+                OutstandingAmount = request.Balance,
+                CourseId = request.CourseId,
+                PaidAmount = request.AmountPaid,
+                Status = AccountStatus.Outstanding,
                 CreatedOn = DateTime.UtcNow,
-                RegistrationDate = DateTime.UtcNow
+                BranchId = request.BranchId,
+                RegistrationDate = DateTime.UtcNow,
+                CreatedBy = request.CreatedBy
             };
 
         }
 
-        public List<Registration> GetRegistration()
+        public List<ReportRegistrationResponse> GetRegistration()
         {
-            return _dbContext.Registration.ToList();
+            var response = new List<ReportRegistrationResponse>();
+            var allBranches = _branchService.GetAllBranches();
+            var allCourses = _courseService.GetAllCourses();
+            var data = _dbContext.Registration.Include(a=> a.student).OrderBy(c => c.RegistrationNumber).ToList();
+            var allUsers = _userManager.Users;
+            foreach (var item in data)
+            {
+                response.Add(new ReportRegistrationResponse
+                {
+                    RegistrationDate = item.RegistrationDate,
+                    Branch = allBranches.SingleOrDefault(x => x.Id == item.BranchId),
+                    CreateBy = new UserInfo
+                    {
+                        Id = item.CreatedBy.ToString(),
+                        Name = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).UserName,
+                        Email = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).Email,
+                        Role = null,
+                        BranchId = item.BranchId,
+                    },
+                    RegistrationNumber = item.RegistrationNumber.ToString(),
+                    StudentName = item.student.Name,
+                    Course = allCourses.SingleOrDefault(x => x.Id == item.CourseId).Name,
+                }); ;
+            }
+            return response;
         }
 
-        public List<Registration> GetRegistration(Guid branchId)
+        public DashBoardResponse GeLastWeeklyStats()
         {
-            return _dbContext.Registration.Where(x => x.BranchId == branchId) .ToList();
+            var lastWeekStart = GetPreviousWeek();
+            var currentWeekStart = GetCurrentWeek();
+            var endOfCurrentWeek = currentWeekStart.AddDays(6);
+
+            var lastweekStats = new List<int>();
+            var currentweekStats = new List<int>();
+            var lastWeekTotal = 0.0;
+
+            double currentWeekCount = _dbContext.Registration
+                .Where(x => x.RegistrationDate >= currentWeekStart).Count(x => x.RegistrationDate <= endOfCurrentWeek);
+            for (int i = 0; i < 7; i++)
+            {
+                if (i > 0)
+                {
+                    lastWeekStart = lastWeekStart.AddDays(1);
+                    lastweekStats.Add(_dbContext.Registration
+                        .Where(x => x.RegistrationDate >= new DateTime(lastWeekStart.Year, lastWeekStart.Month, lastWeekStart.Day, 0, 0, 0, 999)).Count(x => x.RegistrationDate <= new DateTime(lastWeekStart.Year, lastWeekStart.Month, lastWeekStart.Day, 23, 59, 59, 999)));
+                    lastWeekTotal = lastWeekTotal + lastweekStats[i];
+                }
+                else
+                {
+                    lastweekStats.Add(_dbContext.Registration
+                        .Where(x => x.RegistrationDate >= new DateTime(lastWeekStart.Year, lastWeekStart.Month, lastWeekStart.Day, 0, 0, 0, 999)).Count(x => x.RegistrationDate <= new DateTime(lastWeekStart.Year, lastWeekStart.Month, lastWeekStart.Day, 23, 59, 59, 999)));
+                    lastWeekTotal = lastWeekTotal + lastweekStats[i];
+                }
+             
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                if (i > 0)
+                {
+                    currentWeekStart = currentWeekStart.AddDays(1);
+                    currentweekStats.Add(_dbContext.Registration
+                        .Where(x => x.RegistrationDate >= new DateTime(currentWeekStart.Year, currentWeekStart.Month, currentWeekStart.Day, 0, 0, 0, 999)).Count(x => x.RegistrationDate <= new DateTime(currentWeekStart.Year, currentWeekStart.Month, currentWeekStart.Day, 23, 59, 59, 999)));
+                   // lastWeekTotal = currentWeekStart + currentweekStats[i];
+                }
+                else
+                {
+                    currentweekStats.Add(_dbContext.Registration
+                        .Where(x => x.RegistrationDate >= new DateTime(currentWeekStart.Year, currentWeekStart.Month, currentWeekStart.Day, 0, 0, 0, 999)).Count(x => x.RegistrationDate <= new DateTime(currentWeekStart.Year, currentWeekStart.Month, currentWeekStart.Day, 23, 59, 59, 999)));
+                  //  lastWeekTotal = lastWeekTotal + currentweekStats[i];
+                }
+
+            }
+
+            var Growth = Math.Round(((currentWeekCount - lastWeekTotal) / lastWeekTotal) * 100, 2) ;
+            return new DashBoardResponse
+            {
+                Growth = Growth,
+                LastWeekStats = lastweekStats,
+                CurrentWeekStats = currentweekStats,
+                LastWeekTotal = lastWeekTotal,
+                increase = (currentWeekCount > lastWeekTotal)
+
+            };
         }
 
-        public List<Registration> GetRegistration(DateTime startDate, DateTime endDate, Guid branchId)
+        public DateTime GetPreviousWeek()
         {
-            return _dbContext.Registration.Where(x => x.BranchId == branchId).Where(x => x.RegistrationDate >= startDate).Where(x => x.RegistrationDate <= endDate).ToList();
+            DayOfWeek weekStart = DayOfWeek.Monday; // or Sunday, or whenever
+            DateTime startingDate = DateTime.Today;
+
+            while (startingDate.DayOfWeek != weekStart)
+                startingDate = startingDate.AddDays(-1);
+
+            DateTime previousWeekStart = startingDate.AddDays(-7);
+            DateTime previousWeekEnd = startingDate.AddDays(-1);
+            return previousWeekStart;
         }
 
-        public List<Registration> GetRegistration(DateTime startDate, DateTime endDate)
+        public DateTime GetCurrentWeek()
         {
-            return _dbContext.Registration.Where(x => x.RegistrationDate >= startDate).Where(x => x.RegistrationDate <= endDate).ToList();
+            DayOfWeek weekStart = DayOfWeek.Monday; // or Sunday, or whenever
+            DateTime startingDate = DateTime.Today;
+
+            while (startingDate.DayOfWeek != weekStart)
+                startingDate = startingDate.AddDays(-1);
+
+            return startingDate;
+        }
+        public List<ReportRegistrationResponse> GetRegistration(Guid branchId)
+        {
+            var response = new List<ReportRegistrationResponse>();
+            var branch = _branchService.GetBranchInformation(branchId);
+            var allCourses = _courseService.GetAllCourses();
+            var data = _dbContext.Registration.Include(a => a.student).Where(x => x.BranchId == branchId).ToList();
+            var allUsers = _userManager.Users;
+            foreach (var item in data)
+            {
+                response.Add(new ReportRegistrationResponse
+                {
+                    RegistrationDate = item.RegistrationDate,
+                    Branch = branch,
+                    CreateBy = new UserInfo
+                    {
+                        Id = item.CreatedBy.ToString(),
+                        Name = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).UserName,
+                        Email = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).Email,
+                        Role = null,
+                        BranchId = item.BranchId,
+                    },
+                    RegistrationNumber = item.RegistrationNumber.ToString(),
+                    StudentName = item.student.Name,
+                    Course = allCourses.SingleOrDefault(x => x.Id == item.CourseId).Name,
+                }); ;
+            }
+            return response;
+           
+        }
+
+        public List<ReportRegistrationResponse> GetRegistration(DateTime startDate, DateTime endDate, Guid branchId)
+        {
+            var response = new List<ReportRegistrationResponse>();
+            var branch = _branchService.GetBranchInformation(branchId);
+            var allCourses = _courseService.GetAllCourses();
+            var data = _dbContext.Registration.Include(a => a.student).Where(x => x.BranchId == branchId).Where(x => x.RegistrationDate >= startDate).Where(x => x.RegistrationDate <= endDate).ToList();
+            var allUsers = _userManager.Users;
+            foreach (var item in data)
+            {
+                response.Add(new ReportRegistrationResponse
+                {
+                    RegistrationDate = item.RegistrationDate,
+                    Branch = branch,
+                    CreateBy = new UserInfo
+                    {
+                        Id = item.CreatedBy.ToString(),
+                        Name = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).UserName,
+                        Email = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).Email,
+                        Role = null,
+                        BranchId = item.BranchId,
+                    },
+                    RegistrationNumber = item.RegistrationNumber.ToString(),
+                    StudentName = item.student.Name,
+                    Course = allCourses.SingleOrDefault(x => x.Id == item.CourseId).Name,
+                }); ;
+            }
+            return response;
+        }
+
+        public List<ReportRegistrationResponse> GetRegistration(DateTime startDate, DateTime endDate)
+        {
+            var response = new List<ReportRegistrationResponse>();
+            var allBranches = _branchService.GetAllBranches();
+            var allCourses = _courseService.GetAllCourses();
+            var data = _dbContext.Registration.Include(a => a.student).Where(x => x.RegistrationDate >= startDate).Where(x => x.RegistrationDate <= endDate).ToList();
+            var allUsers = _userManager.Users;
+            foreach (var item in data)
+            {
+                response.Add(new ReportRegistrationResponse
+                {
+                    RegistrationDate = item.RegistrationDate,
+                    Branch = allBranches.SingleOrDefault(x => x.Id == item.BranchId),
+                    CreateBy = new UserInfo
+                    {
+                        Id = item.CreatedBy.ToString(),
+                        Name = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).UserName,
+                        Email = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).Email,
+                        Role = null,
+                        BranchId = item.BranchId,
+                    },
+                    RegistrationNumber = item.RegistrationNumber.ToString(),
+                    StudentName = item.student.Name,
+                    Course = allCourses.SingleOrDefault(x => x.Id == item.CourseId).Name,
+                }); ;
+            }
+            return response;
+           // return _dbContext.Registration.Where(x => x.RegistrationDate >= startDate).Where(x => x.RegistrationDate <= endDate).ToList();
+        }
+
+        public DashBoardResponse GetDashboard()
+        {
+            return GeLastWeeklyStats();
         }
     }
 }

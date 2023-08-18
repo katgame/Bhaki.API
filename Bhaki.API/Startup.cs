@@ -33,7 +33,7 @@ namespace Bhaki.API
             Configuration = configuration;
             ConnectionString = Configuration.GetConnectionString("DefaultConnectionString");
         }
-
+        string policyName = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -50,6 +50,7 @@ namespace Bhaki.API
             services.AddTransient<LogsService>();
             services.AddTransient<IRegistrationService, RegistrationService>();
             services.AddTransient<IBranchService, BranchService>();
+            services.AddTransient<ICourseService, CourseService>();
             services.AddApiVersioning(config => 
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
@@ -95,8 +96,20 @@ namespace Bhaki.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bhaki.API", Version = "v1" });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
+          
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: policyName,
+                                  builder =>
+                                  {
+                                      builder
+                                        .WithOrigins("http://localhost:4200") // specifying the allowed origin
+                                        .WithMethods("GET","POST","PUT") // defining the allowed HTTP method
+                                        .AllowAnyHeader(); // allowing any header to be sent
+                                  });
+            });
         }
-
+       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -110,7 +123,8 @@ namespace Bhaki.API
             app.UseHttpsRedirection();
             app.UseDeveloperExceptionPage();
             app.UseRouting();
-
+            //CORS
+            app.UseCors(policyName);
             //Authentication & Authorization
             app.UseAuthentication();
             app.UseAuthorization();

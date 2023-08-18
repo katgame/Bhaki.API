@@ -19,5 +19,8 @@ namespace Bhaki.API.Data.ViewModels.Authentication
 
         [Required(ErrorMessage = "Role is required")]
         public string Role { get; set; }
+
+        [Required(ErrorMessage = "Branch is required")]
+        public Guid BranchId { get; set; }
     }
 }

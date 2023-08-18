@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Bhaki.API.Interfaces;
 using Bhaki.API.Data.Dto;
 using Microsoft.Extensions.Logging;
+using Bhaki.API.Data.Models;
 
 namespace Bhaki.API.Controllers
 {
@@ -57,6 +58,20 @@ namespace Bhaki.API.Controllers
             return Ok(response);
         }
 
-      
+        [HttpGet("get-all-branches-for-report")]
+        public IActionResult GetAllBranchesForReport()
+        {
+            var response = _branchService.GetAllBranchesForReport();
+            return Ok(response);
+        }
+
+        [HttpPut("update-branch")]
+        public IActionResult UpdateBranch(Branch branch)
+        {
+            var response = _branchService.UpdateBranch(branch);
+            return Ok(response);
+        }
+
+
     }
 }

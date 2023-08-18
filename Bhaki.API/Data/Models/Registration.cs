@@ -1,4 +1,5 @@
 ﻿using Bhaki.API.Data.Models;
+using Bhaki.API.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,9 @@ namespace Bhaki.API.Data.Models
         public DateTime CreatedOn { get; set; }
         public Guid CreatedBy { get; set; }
         public DateTime RegistrationDate { get; set; }
+        public Guid CourseId { get; set; }
+        public double OutstandingAmount { get; set; }
+        public double PaidAmount { get; set; }
+        public AccountStatus Status { get; set; }
     }
 }

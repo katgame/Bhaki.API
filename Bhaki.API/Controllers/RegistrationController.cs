@@ -27,8 +27,13 @@ namespace Bhaki.API.Controllers
         [HttpPost("add-registration")]
         public IActionResult CreateRegistration([FromBody] RegistrationRequest request)
         {
-             _registrationService.Register(request);
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Please, provide all required fields");
+            }
+
+            var response = _registrationService.Register(request);
+            return Ok(response);
         }
 
         [HttpGet("get-all-registrations")]
@@ -56,6 +61,13 @@ namespace Bhaki.API.Controllers
         public IActionResult GetRegistrationsByDateRange(DateTime startdate, DateTime enddate)
         {
             var response = _registrationService.GetRegistration(startdate, enddate);
+            return Ok(response);
+        }
+
+        [HttpGet("get-dashboard")]
+        public IActionResult GetDashboard()
+        {
+            var response = _registrationService.GetDashboard();
             return Ok(response);
         }
     }

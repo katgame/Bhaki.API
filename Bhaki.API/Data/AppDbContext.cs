@@ -22,7 +22,7 @@ namespace Bhaki.API.Data
             //    .WithMany(ba => ba.)
             //    .HasForeignKey(bi => bi.BookId);
 
-            //modelBuilder.Entity<Book_Author>()
+            //modelBuilder.Entity<User>()
             //  .HasOne(b => b.Author)
             //  .WithMany(ba => ba.Book_Authors)
             //  .HasForeignKey(bi => bi.AuthorId);
@@ -39,9 +39,8 @@ namespace Bhaki.API.Data
 
         public DbSet<Course> Course { get; set; }
         public DbSet<Registration> Registration { get; set; }
-        public DbSet<CoursePrice> CoursePrice { get; set; }
-        public DbSet<UserAccount> UserAccount { get; set; }
 
         public DbSet<Branch> Branch { get; set; }
+        public DbSet<UserBranch> UserBranch { get; set; }
     }
 }

@@ -14,6 +14,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Bhaki.API.Data.Dto;
+using Bhaki.API.Interfaces;
 
 namespace Bhaki.API.Controllers
 {
@@ -25,16 +27,17 @@ namespace Bhaki.API.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _context;
         private readonly IConfiguration _configuration;
-
+        private readonly IBranchService _branch;
         public AuthenticationController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             AppDbContext context,
-            IConfiguration configuration)
+            IConfiguration configuration, IBranchService branch)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
             _configuration = configuration;
+            _branch = branch;
         }
 
         [HttpPost("register-user")]
@@ -61,12 +64,26 @@ namespace Bhaki.API.Controllers
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
 
+                var branch = _context.Branch.SingleOrDefault(x => x.Id == payload.BranchId);
+                if (branch == null)
+                {
+                    return BadRequest($"Branch {payload.BranchId} doesnt exists");
+                }
                 var result = await _userManager.CreateAsync(newUser, payload.Password);
 
                 if (!result.Succeeded)
                 {
                     return BadRequest("User could not be created!");
                 }
+
+                //var Role = await _userManager.FindByNameAsync(payload.Role);
+                
+                var userBranch = new UserBranch
+                {
+                    BranchId = payload.BranchId,
+                    UserId = Guid.Parse(newUser.Id)
+                };
+                _branch.SaveUserBranch(userBranch);
 
                 switch (payload.Role)
                 {
@@ -102,6 +119,7 @@ namespace Bhaki.API.Controllers
             }
         }
 
+
         [HttpPost("login-user")]
         public async Task<IActionResult> Login([FromBody]LoginVM payload)
         {
@@ -111,12 +129,26 @@ namespace Bhaki.API.Controllers
             }
 
             var user = await _userManager.FindByEmailAsync(payload.Email);
-
+             
             if(user != null && await _userManager.CheckPasswordAsync(user, payload.Password))
             {
                 var tokenValue = await GenerateJwtToken(user);
+                var userRole = await _userManager.GetRolesAsync(user);
+                var branch = _context.UserBranch.Where(x => x.UserId == Guid.Parse(user.Id)).FirstOrDefault();
+                var loginRespose = new LoginRespose
+                {
+                    token = tokenValue,
+                    userDetails = new UserInfo
+                    {
+                        Id = user.Id,
+                        Role = (List<string>)userRole,
+                        Name = user.UserName,
+                        Email = user.Email,
+                        BranchId = branch.BranchId
 
-                return Ok(tokenValue);
+                    }
+                };
+                return Ok(loginRespose);
             }
 
             return Unauthorized();
@@ -148,7 +180,7 @@ namespace Bhaki.API.Controllers
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:Issuer"],
                 audience: _configuration["JWT:Audience"],
-                expires: DateTime.UtcNow.AddMinutes(10), // 5 - 10mins
+                expires: DateTime.UtcNow.AddHours(1), // 5 - 10mins
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );

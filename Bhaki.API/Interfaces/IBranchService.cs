@@ -9,6 +9,9 @@ namespace Bhaki.API.Interfaces
     {
         public bool CreateBranch(BranchRequest request);
         public Branch GetBranchInformation(Guid branchId);
+        public List<BranchReportResponse> GetAllBranchesForReport();
         public List<Branch> GetAllBranches();
+        public bool UpdateBranch(Branch branch);
+        public bool SaveUserBranch(UserBranch Userbranch);
     }
 }
