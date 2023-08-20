@@ -13,7 +13,7 @@ using Bhaki.API.Data.Dto;
 
 namespace Bhaki.API.Controllers
 {
-    [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Clerk)]
     [Route("api/[controller]")]
     [ApiController]
     public class RegistrationController : ControllerBase
@@ -35,7 +35,7 @@ namespace Bhaki.API.Controllers
             var response = _registrationService.Register(request);
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-all-registrations")]
         public IActionResult GetRegistrations()
         {

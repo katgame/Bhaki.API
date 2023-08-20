@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bhaki.API.Data.Dto;
 using Bhaki.API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bhaki.API.Controllers
 {
@@ -25,6 +26,8 @@ namespace Bhaki.API.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+
+        
         private readonly AppDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IBranchService _branch;
@@ -111,15 +114,47 @@ namespace Bhaki.API.Controllers
                 
                 }
 
-                return Created(nameof(Register), $"User {payload.Email} created");
+                return Ok();
             }
-        catch(Exception ex)
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("all-user")]
+        public async Task<IActionResult> GetUsers()
+        {
+            return Ok(_userManager.Users.ToList());
+        }
 
+        [HttpGet("get-user-roles")]
+        public async Task<IActionResult> GetUserRoles()
+        {
+            var roles =  _roleManager.Roles.ToList();
+            return Ok(roles);
+        }
 
+        [HttpDelete("delete-user/{userId}")]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                var tokens = _context.RefreshTokens.Where(x => x.UserId == userId).ToList();
+                foreach (var token in tokens)
+                {
+                    _context.RefreshTokens.Remove(token);
+                }
+                await _userManager.DeleteAsync(user);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+          
+        }
         [HttpPost("login-user")]
         public async Task<IActionResult> Login([FromBody]LoginVM payload)
         {

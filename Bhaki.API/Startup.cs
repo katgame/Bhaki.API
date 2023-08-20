@@ -104,7 +104,7 @@ namespace Bhaki.API
                                   {
                                       builder
                                         .WithOrigins("http://localhost:4200") // specifying the allowed origin
-                                        .WithMethods("GET","POST","PUT") // defining the allowed HTTP method
+                                        .WithMethods("GET","POST","PUT","DELETE") // defining the allowed HTTP method
                                         .AllowAnyHeader(); // allowing any header to be sent
                                   });
             });

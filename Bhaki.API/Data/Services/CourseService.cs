@@ -20,13 +20,17 @@ namespace Bhaki.API.Data.Services
         }
 
 
-        public bool CreateCourse(Course request)
+        public bool CreateCourse(CourseRequest request)
         {
             try
             {
-                //var newCourse = new Course { CreatedOn = DateTime.Now, Description = request.Description, Id = Guid.NewGuid(), Name = request.Name };
-                //_dbContext.Branch.Add(newBranch);
-                //_dbContext.SaveChanges();
+                var newCourse = new Course
+                {
+                    CreatedOn = DateTime.Now, Description = request.Description, Id = Guid.NewGuid(), Name = request.Name, AdditionalDescription = request.AdditionalDescription, CourseDuration = request.CourseDuration,
+                    Firearm = request.Firearm, Grade = request.Grade, Price = request.Price
+                };
+                _dbContext.Course.Add(newCourse);
+                _dbContext.SaveChanges();
                 return true;
             }
             catch (Exception ex)

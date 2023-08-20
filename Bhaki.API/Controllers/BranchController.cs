@@ -15,7 +15,7 @@ using Bhaki.API.Data.Models;
 
 namespace Bhaki.API.Controllers
 {
-    [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Clerk)]
     [Route("api/[controller]")]
     [ApiController]
     public class BranchController : ControllerBase

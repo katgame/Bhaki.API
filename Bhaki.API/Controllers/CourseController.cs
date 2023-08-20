@@ -15,7 +15,7 @@ using Bhaki.API.Data.Models;
 
 namespace Bhaki.API.Controllers
 {
-    [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Clerk)]
     [Route("api/[controller]")]
     [ApiController]
     public class CourseController : ControllerBase
@@ -29,7 +29,7 @@ namespace Bhaki.API.Controllers
         }
 
         [HttpPost("add-course")]
-        public IActionResult CreateCourse([FromBody] Course request)
+        public IActionResult CreateCourse([FromBody] CourseRequest request)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Bhaki.API.Controllers
             return Ok(response);
         }
 
-        [HttpPut("update-Course")]
+        [HttpPut("update-course")]
         public IActionResult UpdateCourse(Course course)
         {
             var response = _CourseService.UpdateCourse(course);
