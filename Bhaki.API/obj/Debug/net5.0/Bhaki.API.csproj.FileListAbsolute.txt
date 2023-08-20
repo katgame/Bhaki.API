@@ -257,5 +257,3 @@ C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\obj\Debug\net5.0\Bhaki.API.
 C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\obj\Debug\net5.0\refint\Bhaki.API.dll
 C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\obj\Debug\net5.0\Bhaki.API.pdb
 C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\obj\Debug\net5.0\Bhaki.API.genruntimeconfig.cache
-C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\bin\Debug\net5.0\Bhaki.API.pdb
-C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\obj\Debug\net5.0\ref\Bhaki.API.dll

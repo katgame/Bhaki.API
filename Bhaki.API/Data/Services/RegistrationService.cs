@@ -5,6 +5,7 @@ using Bhaki.API.Enums;
 using Bhaki.API.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,14 +98,14 @@ namespace Bhaki.API.Data.Services
                     CreateBy = new UserInfo
                     {
                         Id = item.CreatedBy.ToString(),
-                        Name = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).UserName,
-                        Email = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString()).Email,
+                        Name = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString())!.UserName,
+                        Email = allUsers.SingleOrDefault(x => x.Id == item.CreatedBy.ToString())!.Email,
                         Role = null,
                         BranchId = item.BranchId,
                     },
                     RegistrationNumber = item.RegistrationNumber.ToString(),
                     StudentName = item.student.Name,
-                    Course = allCourses.SingleOrDefault(x => x.Id == item.CourseId).Name,
+                    Course = allCourses?.SingleOrDefault(x => x.Id == item.CourseId)!.Name,
                 }); ;
             }
             return response;
@@ -114,7 +115,7 @@ namespace Bhaki.API.Data.Services
         {
             var lastWeekStart = GetPreviousWeek();
             var currentWeekStart = GetCurrentWeek();
-            var endOfCurrentWeek = currentWeekStart.AddDays(6);
+            var endOfCurrentWeek = currentWeekStart.AddDays(7).AddTicks(-1);
 
             var lastweekStats = new List<int>();
             var currentweekStats = new List<int>();
@@ -159,6 +160,15 @@ namespace Bhaki.API.Data.Services
             }
 
             var Growth = Math.Round(((currentWeekCount - lastWeekTotal) / lastWeekTotal) * 100, 2) ;
+            double price;
+            if (Double.TryParse(Growth.ToString(), out price))
+            {
+               // Console.WriteLine(validate);
+            }
+            else
+            {
+                Growth = 0;
+            }
             return new DashBoardResponse
             {
                 Growth = Growth,

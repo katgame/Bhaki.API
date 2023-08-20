@@ -8,33 +8,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Bhaki.API.Data.Services
 {
     public class BranchService : IBranchService
     {
         private AppDbContext _dbContext;
-        public BranchService(AppDbContext context)
+        private ICourseService _courseService;
+        public BranchService(AppDbContext context, ICourseService courseService)
         {
             _dbContext = context;
+            _courseService = courseService;
         }
 
 
         public bool CreateBranch(BranchRequest request)
         {
-            try
+
+            using (var dbContext = _dbContext)
             {
-                var newBranch = new Branch { CreatedOn = DateTime.Now, Description = request.Description, Id = Guid.NewGuid(), Name = request.Name };
-                _dbContext.Branch.Add(newBranch);
-                _dbContext.SaveChanges();
-                return true;
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var newBranch = new Branch { CreatedOn = DateTime.Now, Description = request.Description, Id = Guid.NewGuid(), Name = request.Name };
+                        _dbContext.Branch.Add(newBranch);
+                        _dbContext.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                 throw new Exception($"The Branch cant not be added");
-            }
-        
         }
+
 
 
         public Branch GetBranchInformation(Guid branchId)
@@ -48,8 +60,10 @@ namespace Bhaki.API.Data.Services
             var branches = _dbContext.Branch.ToList();
             foreach (var item in branches)
             {
-                response.Add(new BranchReportResponse { Branch = item,
-                    TotalRegistrations = _dbContext.Registration.Count(x => x.BranchId == item.Id) ,
+                response.Add(new BranchReportResponse
+                {
+                    Branch = item,
+                    TotalRegistrations = _dbContext.Registration.Count(x => x.BranchId == item.Id),
                     LastUpdate = getLastRegistration(item.Id)
                 });
             }
@@ -61,19 +75,19 @@ namespace Bhaki.API.Data.Services
             var regs = _dbContext.Registration.Any(x => x.BranchId == branchid);
             if (regs)
             {
-               return _dbContext.Registration!.Where(x => x.BranchId == branchid)!
-                    .OrderByDescending(x => x.RegistrationDate)!
-                    .FirstOrDefault()!.RegistrationDate;
+                return _dbContext.Registration!.Where(x => x.BranchId == branchid)!
+                     .OrderByDescending(x => x.RegistrationDate)!
+                     .FirstOrDefault()!.RegistrationDate;
             }
             else
             {
                 return null;
             }
-         
+
         }
         public List<Branch> GetAllBranches()
         {
-   
+
             return _dbContext.Branch.ToList();
         }
 
@@ -81,15 +95,25 @@ namespace Bhaki.API.Data.Services
 
         public bool UpdateBranch(Branch branch)
         {
-            try
+            using (var dbContext = _dbContext)
             {
-                _dbContext.Branch.Update(branch);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch 
-            {
-                return false;
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                      
+                        _dbContext.Branch.Update(branch);
+                        _dbContext.SaveChanges();
+                      
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
             }
         }
 

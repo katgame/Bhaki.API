@@ -20,16 +20,14 @@ namespace Bhaki.API.Data.Services
         }
 
 
-        public bool CreateCourse(CourseRequest request)
+        public bool CreateCourse(Course request)
         {
             try
             {
-                var newCourse = new Course
-                {
-                    CreatedOn = DateTime.Now, Description = request.Description, Id = Guid.NewGuid(), Name = request.Name, AdditionalDescription = request.AdditionalDescription, CourseDuration = request.CourseDuration,
-                    Firearm = request.Firearm, Grade = request.Grade, Price = request.Price
-                };
-                _dbContext.Course.Add(newCourse);
+              
+                request.Id = Guid.NewGuid();
+                request.CreatedOn = DateTime.Now;
+                _dbContext.Course.Add(request);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -46,12 +44,15 @@ namespace Bhaki.API.Data.Services
             return _dbContext.Course.SingleOrDefault(x => x.Id == courseId);
         }
 
+        public List<Course> GetAllCourses(Guid branchId)
+        {
+            return _dbContext.Course.Where(x => x.BranchId == branchId).OrderBy(y => y.Name).ToList();
+        }
         public List<Course> GetAllCourses()
         {
             return _dbContext.Course.ToList();
         }
 
-       
 
         public bool UpdateCourse(Course course)
         {

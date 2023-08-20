@@ -29,7 +29,7 @@ namespace Bhaki.API.Controllers
         }
 
         [HttpPost("add-course")]
-        public IActionResult CreateCourse([FromBody] CourseRequest request)
+        public IActionResult CreateCourse([FromBody] Course request)
         {
             try
             {
@@ -51,12 +51,14 @@ namespace Bhaki.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("get-all-courses")]
-        public IActionResult GetAllCourses()
+        [HttpGet("get-all-courses/{branchId}")]
+        public IActionResult GetAllCourses(Guid branchId)
         {
-            var response = _CourseService.GetAllCourses();
+            var response = _CourseService.GetAllCourses(branchId);
             return Ok(response);
         }
+
+
 
         [HttpPut("update-course")]
         public IActionResult UpdateCourse(Course course)
