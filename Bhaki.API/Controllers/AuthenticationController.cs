@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Bhaki.API.Data.Dto;
 using Bhaki.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Bhaki.API.Controllers
 {
@@ -31,11 +32,13 @@ namespace Bhaki.API.Controllers
         private readonly AppDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IBranchService _branch;
+        private readonly ILogger _logger;
         public AuthenticationController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             AppDbContext context,
-            IConfiguration configuration, IBranchService branch)
+            IConfiguration configuration, IBranchService branch, ILogger logger)
         {
+            _logger = logger;
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
@@ -179,8 +182,11 @@ namespace Bhaki.API.Controllers
             if(user != null && await _userManager.CheckPasswordAsync(user, payload.Password) && user.LockoutEnabled == false)
             {
                 var tokenValue = await GenerateJwtToken(user);
+                _logger.LogTrace("Token value: " , tokenValue);
                 var userRole = await _userManager.GetRolesAsync(user);
+                _logger.LogTrace("userRole value: ", userRole);
                 var branch = _context.UserBranch.Where(x => x.UserId == Guid.Parse(user.Id)).FirstOrDefault();
+                _logger.LogTrace("branch value: ", branch);
                 var loginRespose = new LoginRespose
                 {
                     token = tokenValue,
