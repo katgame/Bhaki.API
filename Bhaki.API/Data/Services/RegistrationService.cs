@@ -5,11 +5,9 @@ using Bhaki.API.Enums;
 using Bhaki.API.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bhaki.API.Data.Services
 {

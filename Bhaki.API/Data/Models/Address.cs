@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Bhaki.API.Data.Models
 {
     public class Address
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+
         public Guid Id { get; set; }
         public string StreetName { get; set; }
         public string Line1 {get;set;}

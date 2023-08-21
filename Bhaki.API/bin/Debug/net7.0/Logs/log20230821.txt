@@ -1,0 +1,25 @@
+08/21/2023 16:39:11 +02:00 [Fatal] - Message: Application startup exception
+System.AggregateException: One or more errors occurred. (The type initializer for 'Microsoft.EntityFrameworkCore.Query.QueryableMethods' threw an exception.)
+ ---> System.TypeInitializationException: The type initializer for 'Microsoft.EntityFrameworkCore.Query.QueryableMethods' threw an exception.
+ ---> System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethods..cctor()
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethods.get_FirstOrDefaultWithPredicate()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.RoleStore`5.FindByNameAsync(String normalizedName, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.RoleManager`1.RoleExistsAsync(String roleName)
+   at Bhaki.API.Data.AppDbInitializer.SeedRoles(IApplicationBuilder applicationBuilder) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\AppDbInitializer.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Bhaki.API.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Startup.cs:line 142
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.Extensions.DependencyInjection.AutoRegisterMiddleware.<>c__DisplayClass4_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
