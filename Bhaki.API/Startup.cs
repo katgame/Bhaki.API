@@ -51,6 +51,7 @@ namespace Bhaki.API
             services.AddTransient<IRegistrationService, RegistrationService>();
             services.AddTransient<IBranchService, BranchService>();
             services.AddTransient<ICourseService, CourseService>();
+
             services.AddApiVersioning(config => 
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);

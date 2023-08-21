@@ -36,7 +36,7 @@ namespace Bhaki.API.Controllers
         public AuthenticationController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             AppDbContext context,
-            IConfiguration configuration, IBranchService branch, ILogger logger)
+            IConfiguration configuration, IBranchService branch, ILogger<AuthenticationController> logger)
         {
             _logger = logger;
             _userManager = userManager;
