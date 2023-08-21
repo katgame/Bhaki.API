@@ -13,5 +13,6 @@ namespace Bhaki.API.Interfaces
         List<ReportRegistrationResponse> GetRegistration(DateTime startDate, DateTime endDate, Guid branchId);
         List<ReportRegistrationResponse> GetRegistration(DateTime startDate, DateTime endDate);
         DashBoardResponse GetDashboard();
+        RegistrationDetailsResponse GetRegistrationDetails(int id);
     }
 }

@@ -87,7 +87,7 @@ namespace Bhaki.API.Data.Services
             var response = new List<ReportRegistrationResponse>();
             var allBranches = _branchService.GetAllBranches();
             var allCourses = _courseService.GetAllCourses();
-            var data = _dbContext.Registration.Include(a=> a.student).OrderBy(c => c.RegistrationNumber).ToList();
+            var data = _dbContext.Registration.Include(a=> a.student).OrderBy(c => c.RegistrationNumber).Take(200).ToList();
             var allUsers = _userManager.Users;
             foreach (var item in data)
             {
@@ -106,7 +106,7 @@ namespace Bhaki.API.Data.Services
                     RegistrationNumber = item.RegistrationNumber.ToString(),
                     StudentName = item.student.Name,
                     Course = allCourses?.SingleOrDefault(x => x.Id == item.CourseId)!.Name,
-                }); ;
+                }); 
             }
             return response;
         }
@@ -161,14 +161,11 @@ namespace Bhaki.API.Data.Services
 
             var Growth = Math.Round(((currentWeekCount - lastWeekTotal) / lastWeekTotal) * 100, 2) ;
             double price;
-            if (Double.TryParse(Growth.ToString(), out price))
+            if (Growth == Double.NegativeInfinity || Growth == Double.PositiveInfinity)
             {
-               // Console.WriteLine(validate);
+                Growth = currentWeekCount * 100;
             }
-            else
-            {
-                Growth = 0;
-            }
+            
             return new DashBoardResponse
             {
                 Growth = Growth,
@@ -295,6 +292,30 @@ namespace Bhaki.API.Data.Services
         public DashBoardResponse GetDashboard()
         {
             return GeLastWeeklyStats();
+        }
+
+        public RegistrationDetailsResponse GetRegistrationDetails(int id)
+        {
+
+            var allCourses = _courseService.GetAllCourses();
+            var data = _dbContext.Registration.Include(a => a.student).SingleOrDefault(x => x.RegistrationNumber == id);
+            var branch = _branchService.GetBranchInformation(data.BranchId);
+            var allUsers = _userManager.Users;
+            var res = new RegistrationDetailsResponse
+            {
+                Branch = branch,
+                CreateBy = new UserInfo
+                {
+                    Id = data.CreatedBy.ToString(),
+                    Name = allUsers.SingleOrDefault(x => x.Id == data.CreatedBy.ToString()).UserName,
+                    Email = allUsers.SingleOrDefault(x => x.Id == data.CreatedBy.ToString()).Email,
+                    Role = null,
+                    BranchId = data.BranchId,
+                },
+                Registration = data,
+                Course = allCourses.SingleOrDefault(x => x.Id == data.CourseId),
+            };
+            return res;
         }
     }
 }

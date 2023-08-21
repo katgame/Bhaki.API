@@ -10,6 +10,7 @@ namespace Bhaki.API.Data.Dto
         public Branch Branch { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string StudentName { get; set; }
+        public Student Student { get; set; }
         public string Course { get; set; }
     }
 }

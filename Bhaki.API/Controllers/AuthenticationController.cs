@@ -64,7 +64,8 @@ namespace Bhaki.API.Controllers
                 {
                     Email = payload.Email,
                     UserName = payload.UserName,
-                    SecurityStamp = Guid.NewGuid().ToString()
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    LockoutEnabled = false
                 };
 
                 var branch = _context.Branch.SingleOrDefault(x => x.Id == payload.BranchId);
@@ -78,9 +79,9 @@ namespace Bhaki.API.Controllers
                 {
                     return BadRequest("User could not be created!");
                 }
-
+                await _userManager.SetLockoutEnabledAsync(newUser, false);
                 //var Role = await _userManager.FindByNameAsync(payload.Role);
-                
+
                 var userBranch = new UserBranch
                 {
                     BranchId = payload.BranchId,
@@ -134,18 +135,29 @@ namespace Bhaki.API.Controllers
             return Ok(roles);
         }
 
+        [HttpPut("enable-user/{userId}")]
+        public async Task<IActionResult> EnableUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            await _userManager.SetLockoutEnabledAsync(user, false);
+            return Ok();
+        }
+
         [HttpDelete("delete-user/{userId}")]
         public async Task<IActionResult> DeleteUser(string userId)
         {
             try
             {
                 var user = await _userManager.FindByIdAsync(userId);
+                
                 var tokens = _context.RefreshTokens.Where(x => x.UserId == userId).ToList();
                 foreach (var token in tokens)
                 {
                     _context.RefreshTokens.Remove(token);
                 }
-                await _userManager.DeleteAsync(user);
+                //await _userManager.DeleteAsync(user);
+                //await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now);
+                await _userManager.SetLockoutEnabledAsync(user, true);
                 return Ok();
             }
             catch (Exception e)
@@ -164,8 +176,8 @@ namespace Bhaki.API.Controllers
             }
 
             var user = await _userManager.FindByEmailAsync(payload.Email);
-             
-            if(user != null && await _userManager.CheckPasswordAsync(user, payload.Password))
+            var userLockoutEnd = user.LockoutEnd;
+            if(user != null && await _userManager.CheckPasswordAsync(user, payload.Password) && user.LockoutEnabled == false)
             {
                 var tokenValue = await GenerateJwtToken(user);
                 var userRole = await _userManager.GetRolesAsync(user);

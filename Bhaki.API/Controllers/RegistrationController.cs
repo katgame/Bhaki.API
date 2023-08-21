@@ -43,6 +43,14 @@ namespace Bhaki.API.Controllers
             return Ok(response);
         }
 
+        //[Authorize(Roles = UserRoles.Admin)]
+        //[HttpGet("get-all-registrations-by-id/{id}")]
+        //public IActionResult GetRegistrationsById(Guid id)
+        //{
+        //    var response = _registrationService.GetRegistrationbyId(id);
+        //    return Ok(response);
+        //}
+
         [HttpGet("get-all-registrations-by-branch-id/{branchId}")]
         public IActionResult GetRegistrationsByBranchId(Guid branchId)
         {
@@ -68,6 +76,12 @@ namespace Bhaki.API.Controllers
         public IActionResult GetDashboard()
         {
             var response = _registrationService.GetDashboard();
+            return Ok(response);
+        }
+        [HttpGet("get-registration-details/{registrationNumber}")]
+        public IActionResult GetRegistrationDetails(int registrationNumber)
+        {
+            var response = _registrationService.GetRegistrationDetails(registrationNumber);
             return Ok(response);
         }
     }
