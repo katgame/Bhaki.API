@@ -176,7 +176,6 @@ namespace Bhaki.API.Controllers
             }
 
             var user = await _userManager.FindByEmailAsync(payload.Email);
-            var userLockoutEnd = user.LockoutEnd;
             if(user != null && await _userManager.CheckPasswordAsync(user, payload.Password) && user.LockoutEnabled == false)
             {
                 var tokenValue = await GenerateJwtToken(user);
@@ -205,55 +204,64 @@ namespace Bhaki.API.Controllers
 
         private async Task<AuthResultVM> GenerateJwtToken(ApplicationUser user)
         {
-            var authClaims = new List<Claim>()
+            try
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+                var authClaims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
 
-            //Add User Roles
-            var userRoles = await _userManager.GetRolesAsync(user);
-            foreach (var userRole in userRoles)
-            {
-                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-            }
+                //Add User Roles
+                var userRoles = await _userManager.GetRolesAsync(user);
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
 
 
-            var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
+                var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
 
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:Issuer"],
-                audience: _configuration["JWT:Audience"],
-                expires: DateTime.UtcNow.AddHours(1), // 5 - 10mins
-                claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                var token = new JwtSecurityToken(
+                    issuer: _configuration["JWT:Issuer"],
+                    audience: _configuration["JWT:Audience"],
+                    expires: DateTime.UtcNow.AddHours(1),
+                    claims: authClaims,
+                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
 
-            var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
+                var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-            var refreshToken = new RefreshToken()
+                var refreshToken = new RefreshToken()
+                {
+                    JwtId = token.Id,
+                    IsRevoked = false,
+                    UserId = user.Id,
+                    DateAdded = DateTime.UtcNow,
+                    DateExpire = DateTime.UtcNow.AddMonths(6),
+                    Token = Guid.NewGuid().ToString() + "-" + Guid.NewGuid().ToString()
+                };
+                await _context.RefreshTokens.AddAsync(refreshToken);
+                await _context.SaveChangesAsync();
+
+                var response = new AuthResultVM()
+                {
+                    Token = jwtToken,
+                    RefreshToken = refreshToken.Token,
+                    ExpiresAt = token.ValidTo
+                };
+
+                return response;
+            }
+            catch (Exception e)
             {
-                JwtId = token.Id,
-                IsRevoked = false,
-                UserId = user.Id,
-                DateAdded = DateTime.UtcNow,
-                DateExpire = DateTime.UtcNow.AddMonths(6),
-                Token = Guid.NewGuid().ToString() + "-" + Guid.NewGuid().ToString()
-            };
-            await _context.RefreshTokens.AddAsync(refreshToken);
-            await _context.SaveChangesAsync();
-
-            var response = new AuthResultVM()
-            {
-                Token = jwtToken,
-                RefreshToken = refreshToken.Token,
-                ExpiresAt = token.ValidTo
-            };
-
-            return response;
+                Console.WriteLine(e);
+                throw e;
+            }
+           
         }
 
     }
