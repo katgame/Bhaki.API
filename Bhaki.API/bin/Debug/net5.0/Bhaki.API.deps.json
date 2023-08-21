@@ -36,6 +36,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.2",
           "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
+          "Microsoft.Data.SqlClient": "2.0.1",
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.2",

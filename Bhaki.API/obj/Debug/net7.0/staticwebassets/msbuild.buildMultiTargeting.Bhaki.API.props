@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Bhaki.API.props" />
+</Project>
