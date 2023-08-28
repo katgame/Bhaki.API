@@ -12,6 +12,7 @@ namespace Bhaki.API.Data.Dto
         public bool increase { get; set; }
         public double Growth { get; set; }
         public double LastWeekTotal { get; set; }
+        public double CurrentWeekTotal { get; set; }
 
     }
 }

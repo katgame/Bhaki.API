@@ -170,7 +170,8 @@ namespace Bhaki.API.Data.Services
                 LastWeekStats = lastweekStats,
                 CurrentWeekStats = currentweekStats,
                 LastWeekTotal = lastWeekTotal,
-                increase = (currentWeekCount > lastWeekTotal)
+                increase = (currentWeekCount > lastWeekTotal),
+                CurrentWeekTotal = currentWeekCount
 
             };
         }
