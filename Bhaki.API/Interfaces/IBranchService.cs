@@ -12,6 +12,7 @@ namespace Bhaki.API.Interfaces
         public List<BranchReportResponse> GetAllBranchesForReport();
         public List<Branch> GetAllBranches();
         public bool UpdateBranch(Branch branch);
+        public bool DeleteBranch(Guid branchId);
         public bool SaveUserBranch(UserBranch Userbranch);
     }
 }

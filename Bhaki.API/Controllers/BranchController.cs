@@ -71,7 +71,12 @@ namespace Bhaki.API.Controllers
             var response = _branchService.UpdateBranch(branch);
             return Ok(response);
         }
-
+        [HttpDelete("delete-branch/{branchId}")]
+        public IActionResult DeleteBranch(Guid branchId)
+        {
+            var response = _branchService.DeleteBranch(branchId);
+            return Ok(response);
+        }
 
     }
 }

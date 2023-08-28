@@ -130,5 +130,13 @@ namespace Bhaki.API.Data.Services
                 return false;
             }
         }
+
+        public bool DeleteBranch(Guid branchId)
+        {
+             var branch = _dbContext.Branch.SingleOrDefault(x => x.Id == branchId);
+            _dbContext.Branch.Remove(branch);
+            _dbContext.SaveChanges();
+            return true;
+        }
     }
 }
