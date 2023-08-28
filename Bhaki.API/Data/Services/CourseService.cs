@@ -24,9 +24,9 @@ namespace Bhaki.API.Data.Services
         {
             try
             {
-              
+                var SoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("South Africa Standard Time");
                 request.Id = Guid.NewGuid();
-                request.CreatedOn = DateTime.Now;
+                request.CreatedOn = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone);
                 _dbContext.Course.Add(request);
                 _dbContext.SaveChanges();
                 return true;

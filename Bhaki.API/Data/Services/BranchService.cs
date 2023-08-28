@@ -32,7 +32,8 @@ namespace Bhaki.API.Data.Services
                 {
                     try
                     {
-                        var newBranch = new Branch { CreatedOn = DateTime.Now, Description = request.Description, Id = Guid.NewGuid(), Name = request.Name };
+                        var SoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("South Africa Standard Time");
+                        var newBranch = new Branch { CreatedOn = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone), Description = request.Description, Id = Guid.NewGuid(), Name = request.Name };
                         _dbContext.Branch.Add(newBranch);
                         _dbContext.SaveChanges();
                         transaction.Commit();

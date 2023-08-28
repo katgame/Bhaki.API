@@ -50,34 +50,35 @@ namespace Bhaki.API.Controllers
         //    var response = _registrationService.GetRegistrationbyId(id);
         //    return Ok(response);
         //}
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-all-registrations-by-branch-id/{branchId}")]
         public IActionResult GetRegistrationsByBranchId(Guid branchId)
         {
             var response = _registrationService.GetRegistration(branchId);
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-all-registrations-by-date-branchId/{startdate}/{enddate}/{branchId}")]
         public IActionResult GetRegistrationsByDateAndBranchId(DateTime startdate, DateTime enddate, Guid branchId)
         {
             var response = _registrationService.GetRegistration(startdate,enddate,branchId);
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-all-registrations-by-date/{startdate}/{enddate}")]
         public IActionResult GetRegistrationsByDateRange(DateTime startdate, DateTime enddate)
         {
             var response = _registrationService.GetRegistration(startdate, enddate);
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-dashboard")]
         public IActionResult GetDashboard()
         {
             var response = _registrationService.GetDashboard();
             return Ok(response);
         }
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-registration-details/{registrationNumber}")]
         public IActionResult GetRegistrationDetails(int registrationNumber)
         {

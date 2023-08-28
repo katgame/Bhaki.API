@@ -27,7 +27,7 @@ namespace Bhaki.API.Controllers
             _logger = logger;
             _branchService = branchService;
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPost("add-branch")]
         public IActionResult CreateBranch([FromBody] BranchRequest request)
         {
@@ -43,34 +43,37 @@ namespace Bhaki.API.Controllers
             }
         
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-branch-information/{branchId}")]
         public IActionResult GetBranchInformation(Guid branchId)
         {
             var response = _branchService.GetBranchInformation(branchId);
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Clerk)]
         [HttpGet("get-all-branches")]
         public IActionResult GetAllBranches()
         {
             var response = _branchService.GetAllBranches();
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-all-branches-for-report")]
         public IActionResult GetAllBranchesForReport()
         {
             var response = _branchService.GetAllBranchesForReport();
             return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPut("update-branch")]
         public IActionResult UpdateBranch(Branch branch)
         {
             var response = _branchService.UpdateBranch(branch);
             return Ok(response);
+
         }
+
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpDelete("delete-branch/{branchId}")]
         public IActionResult DeleteBranch(Guid branchId)
         {

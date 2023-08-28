@@ -45,7 +45,7 @@ namespace Bhaki.API.Controllers
             _configuration = configuration;
             _branch = branch;
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPost("register-user")]
         public async Task<IActionResult> Register([FromBody]RegisterVM payload)
         {
@@ -125,19 +125,25 @@ namespace Bhaki.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("all-user")]
         public async Task<IActionResult> GetUsers()
         {
-            return Ok(_userManager.Users.ToList());
+            var userBranches = _context.UserBranch.ToList();
+            var branches = _context.Branch.ToList();
+            var users = _userManager.Users.ToList();
+            var userRole =  _roleManager.Roles.ToList();
+            var response = (from user in users let userBranchId = userBranches.SingleOrDefault(x => x.UserId == Guid.Parse(user.Id))!.BranchId select new UserRequest { User = user, Branch = branches.SingleOrDefault(x => x.Id == userBranchId) }).ToList();
+            return Ok(response);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-user-roles")]
         public async Task<IActionResult> GetUserRoles()
         {
             var roles =  _roleManager.Roles.Where(x => x.Name != "SuperUser").ToList();
             return Ok(roles);
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPut("enable-user/{userId}")]
         public async Task<IActionResult> EnableUser(string userId)
         {
@@ -145,7 +151,7 @@ namespace Bhaki.API.Controllers
             await _userManager.SetLockoutEnabledAsync(user, false);
             return Ok();
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpDelete("delete-user/{userId}")]
         public async Task<IActionResult> DeleteUser(string userId)
         {
@@ -158,8 +164,6 @@ namespace Bhaki.API.Controllers
                 {
                     _context.RefreshTokens.Remove(token);
                 }
-                //await _userManager.DeleteAsync(user);
-                //await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now);
                 await _userManager.SetLockoutEnabledAsync(user, true);
                 return Ok();
             }

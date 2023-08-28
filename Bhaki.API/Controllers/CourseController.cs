@@ -27,7 +27,7 @@ namespace Bhaki.API.Controllers
             _logger = logger;
             _CourseService = CourseService;
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPost("add-course")]
         public IActionResult CreateCourse([FromBody] Course request)
         {
@@ -43,7 +43,7 @@ namespace Bhaki.API.Controllers
             }
 
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-course-information/{courseId}")]
         public IActionResult GetCourseInformation(Guid CourseId)
         {
@@ -57,9 +57,7 @@ namespace Bhaki.API.Controllers
             var response = _CourseService.GetAllCourses(branchId);
             return Ok(response);
         }
-
-
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPut("update-course")]
         public IActionResult UpdateCourse(Course course)
         {

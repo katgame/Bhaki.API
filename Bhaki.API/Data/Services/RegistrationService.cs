@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Bhaki.API.Data.Services
@@ -51,6 +52,7 @@ namespace Bhaki.API.Data.Services
 
         internal Registration createRegistationModel(RegistrationRequest request)
         {
+            var SoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("South Africa Standard Time");
             var userID = Guid.NewGuid();
             return new Registration
             {
@@ -60,7 +62,7 @@ namespace Bhaki.API.Data.Services
                     Id = userID,
                     CellPhone = request.Cellphone,
                     Address = request.Address,
-                    CreatedOn = DateTime.UtcNow,
+                    CreatedOn = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
                     EmailAddress = request.EmailAddress,
                     IdDocument = request.IdDocument,
                     IdNumber = request.IdNumber,
@@ -72,12 +74,11 @@ namespace Bhaki.API.Data.Services
                 CourseId = request.CourseId,
                 PaidAmount = request.AmountPaid,
                 Status = AccountStatus.Outstanding,
-                CreatedOn = DateTime.UtcNow,
+                CreatedOn = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
                 BranchId = request.BranchId,
-                RegistrationDate = DateTime.UtcNow,
+                RegistrationDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
                 CreatedBy = request.CreatedBy
             };
-
         }
 
         public List<ReportRegistrationResponse> GetRegistration()
@@ -85,7 +86,7 @@ namespace Bhaki.API.Data.Services
             var response = new List<ReportRegistrationResponse>();
             var allBranches = _branchService.GetAllBranches();
             var allCourses = _courseService.GetAllCourses();
-            var data = _dbContext.Registration.Include(a=> a.student).OrderBy(c => c.RegistrationNumber).Take(200).ToList();
+            var data = _dbContext.Registration.Include(a=> a.student).OrderByDescending(c => c.RegistrationNumber).Take(200).ToList();
             var allUsers = _userManager.Users;
             foreach (var item in data)
             {
