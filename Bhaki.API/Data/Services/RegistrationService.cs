@@ -86,7 +86,7 @@ namespace Bhaki.API.Data.Services
             var response = new List<ReportRegistrationResponse>();
             var allBranches = _branchService.GetAllBranches();
             var allCourses = _courseService.GetAllCourses();
-            var data = _dbContext.Registration.Include(a=> a.student).OrderByDescending(c => c.RegistrationNumber).Take(200).ToList();
+            var data = _dbContext.Registration.Include(a=> a.student).OrderBy(c => c.RegistrationNumber).Take(200).ToList();
             var allUsers = _userManager.Users;
             foreach (var item in data)
             {
