@@ -77,7 +77,8 @@ namespace Bhaki.API.Data.Services
                 CreatedOn = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
                 BranchId = request.BranchId,
                 RegistrationDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
-                CreatedBy = request.CreatedBy
+                CreatedBy = request.CreatedBy,
+                RecieptReference = request.RecieptReference
             };
         }
 

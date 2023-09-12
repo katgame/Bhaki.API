@@ -12,6 +12,7 @@ namespace Bhaki.API.Data.Dto
         public string EmailAddress { get; set; }
         public string Cellphone { get; set; }
         public string CourseName { get; set; }
+        public string RecieptReference { get; set; }
         public double AmountPaid { get; set; }
         public double Balance { get; set; }
         public Guid BranchId { get; set; }

@@ -140,7 +140,7 @@ namespace Bhaki.API.Controllers
         [HttpGet("get-user-roles")]
         public async Task<IActionResult> GetUserRoles()
         {
-            var roles =  _roleManager.Roles.Where(x => x.Name != "SuperUser").ToList();
+            var roles =  _roleManager.Roles.Where(x => (x.Name == "Admin") || (x.Name == "Clerk")).ToList();
             return Ok(roles);
         }
         [Authorize(Roles = UserRoles.Admin)]

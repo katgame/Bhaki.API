@@ -23,5 +23,6 @@ namespace Bhaki.API.Data.Models
         public double OutstandingAmount { get; set; }
         public double PaidAmount { get; set; }
         public AccountStatus Status { get; set; }
+        public string RecieptReference { get; set; } 
     }
 }

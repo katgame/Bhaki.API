@@ -259,6 +259,9 @@ namespace Bhaki.API.Migrations
                     b.Property<double>("PaidAmount")
                         .HasColumnType("float");
 
+                    b.Property<string>("RecieptReference")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
 

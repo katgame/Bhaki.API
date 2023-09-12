@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bhaki.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230821161108_init")]
-    partial class init
+    [Migration("20230912065134_referenceReciept")]
+    partial class referenceReciept
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -261,6 +261,9 @@ namespace Bhaki.API.Migrations
 
                     b.Property<double>("PaidAmount")
                         .HasColumnType("float");
+
+                    b.Property<string>("RecieptReference")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
