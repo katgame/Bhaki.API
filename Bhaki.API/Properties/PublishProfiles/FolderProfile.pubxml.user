@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2023-11-29T13:36:45.6646959Z;True|2023-11-29T08:34:32.8172330+02:00;True|2023-11-29T08:32:00.6528257+02:00;True|2023-11-28T09:13:24.1886410+02:00;True|2023-11-28T08:55:18.8170508+02:00;True|2023-11-28T08:45:34.9727994+02:00;True|2023-11-28T08:35:53.2821101+02:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

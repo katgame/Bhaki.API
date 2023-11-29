@@ -19,5 +19,6 @@ namespace Bhaki.API.Data.Dto
         public Guid CourseId { get; set; }
         public Guid CreatedBy { get; set; }
         public Address Address { get; set; }
+        public DateTime RegistrationDate { get; set; }
     }
 }

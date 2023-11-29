@@ -76,7 +76,7 @@ namespace Bhaki.API.Data.Services
                 Status = AccountStatus.Outstanding,
                 CreatedOn = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
                 BranchId = request.BranchId,
-                RegistrationDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, SoTimeZone),
+                RegistrationDate = TimeZoneInfo.ConvertTime(request.RegistrationDate, TimeZoneInfo.Local, SoTimeZone),
                 CreatedBy = request.CreatedBy,
                 RecieptReference = request.RecieptReference
             };
