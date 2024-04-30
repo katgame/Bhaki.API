@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Exceptions
+namespace Dice.API.Exceptions
 {
     [Serializable]
     public class PublisherNameException:Exception

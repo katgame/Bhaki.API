@@ -1,10 +1,10 @@
-﻿using Bhaki.API.Data.Models;
+﻿using Dice.API.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.Services
+namespace Dice.API.Data.Services
 {
     public class LogsService
     {

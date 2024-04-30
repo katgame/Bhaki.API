@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.Models
+namespace Dice.API.Data.Models
 {
     public class RefreshToken
     {

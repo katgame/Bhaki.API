@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Controllers.v2
+namespace Dice.API.Controllers.v2
 {
     [ApiVersion("2.0")]
     [Route("api/[controller]")]

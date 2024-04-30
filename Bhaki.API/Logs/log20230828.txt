@@ -1,5 +1,5 @@
-08/28/2023 08:46:02 +02:00 [Error] - Message: An error occurred using the connection to database '"Bhaki"' on server '"tcp:bhaki.database.windows.net,1433"'.
-08/28/2023 08:46:02 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/28/2023 08:46:02 +02:00 [Error] - Message: An error occurred using the connection to database '"Dice"' on server '"tcp:Dice.database.windows.net,1433"'.
+08/28/2023 08:46:02 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - A socket operation was attempted to an unreachable host.)
  ---> System.ComponentModel.Win32Exception (10065): A socket operation was attempted to an unreachable host.
    at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -52,8 +52,8 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instanc
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
 ClientConnectionId:00000000-0000-0000-0000-000000000000
 Error Number:10065,State:0,Class:20
-08/28/2023 08:48:01 +02:00 [Error] - Message: An error occurred using the connection to database '"Bhaki"' on server '"tcp:bhaki.database.windows.net,1433"'.
-08/28/2023 08:48:01 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/28/2023 08:48:01 +02:00 [Error] - Message: An error occurred using the connection to database '"Dice"' on server '"tcp:Dice.database.windows.net,1433"'.
+08/28/2023 08:48:01 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - A socket operation was attempted to an unreachable host.)
  ---> System.ComponentModel.Win32Exception (10065): A socket operation was attempted to an unreachable host.
    at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -133,8 +133,8 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instanc
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
    at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
    at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   at Bhaki.API.Data.Services.BranchService.GetAllBranchesForReport() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\BranchService.cs:line 60
-   at Bhaki.API.Controllers.BranchController.GetAllBranchesForReport() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\BranchController.cs:line 64
+   at Dice.API.Data.Services.BranchService.GetAllBranchesForReport() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\BranchService.cs:line 60
+   at Dice.API.Controllers.BranchController.GetAllBranchesForReport() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\BranchController.cs:line 64
    at lambda_method302(Closure, Object, Object[])
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -179,9 +179,9 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instanc
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
    at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Boolean& found)
    at lambda_method333(Closure, QueryContext)
-   at Bhaki.API.Data.Services.RegistrationService.GeLastWeeklyStats() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 122
-   at Bhaki.API.Data.Services.RegistrationService.GetDashboard() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 292
-   at Bhaki.API.Controllers.RegistrationController.GetDashboard() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 78
+   at Dice.API.Data.Services.profileService.GeLastWeeklyStats() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 122
+   at Dice.API.Data.Services.profileService.GetDashboard() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 292
+   at Dice.API.Controllers.profileController.GetDashboard() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 78
    at lambda_method303(Closure, Object, Object[])
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -199,10 +199,10 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instanc
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
 ClientConnectionId:00000000-0000-0000-0000-000000000000
 Error Number:10065,State:0,Class:20
-08/28/2023 08:48:04 +02:00 [Error] - Message: {"StatusCode":500,"Message":"A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - A socket operation was attempted to an unreachable host.)","Path":"/api/Registration/get-dashboard"}
+08/28/2023 08:48:04 +02:00 [Error] - Message: {"StatusCode":500,"Message":"A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - A socket operation was attempted to an unreachable host.)","Path":"/api/profile/get-dashboard"}
 08/28/2023 08:48:04 +02:00 [Error] - Message: {"StatusCode":500,"Message":"A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - A socket operation was attempted to an unreachable host.)","Path":"/api/Branch/get-all-branches-for-report"}
-08/28/2023 08:48:22 +02:00 [Error] - Message: An error occurred using the connection to database '"Bhaki"' on server '"tcp:bhaki.database.windows.net,1433"'.
-08/28/2023 08:48:22 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/28/2023 08:48:22 +02:00 [Error] - Message: An error occurred using the connection to database '"Dice"' on server '"tcp:Dice.database.windows.net,1433"'.
+08/28/2023 08:48:22 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
  ---> Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.)
  ---> System.ComponentModel.Win32Exception (10060): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
@@ -261,8 +261,8 @@ Error Number:10060,State:0,Class:20
    --- End of inner exception stack trace ---
    at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
-08/28/2023 08:49:22 +02:00 [Error] - Message: An error occurred using the connection to database '"Bhaki"' on server '"tcp:bhaki.database.windows.net,1433"'.
-08/28/2023 08:49:22 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/28/2023 08:49:22 +02:00 [Error] - Message: An error occurred using the connection to database '"Dice"' on server '"tcp:Dice.database.windows.net,1433"'.
+08/28/2023 08:49:22 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - No such host is known.)
  ---> System.ComponentModel.Win32Exception (11001): No such host is known.
    at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -341,14 +341,14 @@ System.AggregateException: One or more errors occurred. (A network-related or in
    at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
    at Microsoft.AspNetCore.Identity.RoleManager`1.RoleExistsAsync(String roleName)
-   at Bhaki.API.Data.AppDbInitializer.SeedRoles(IApplicationBuilder applicationBuilder) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\AppDbInitializer.cs:line 26
+   at Dice.API.Data.AppDbInitializer.SeedRoles(IApplicationBuilder applicationBuilder) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\AppDbInitializer.cs:line 26
 ClientConnectionId:00000000-0000-0000-0000-000000000000
 Error Number:11001,State:0,Class:20
    --- End of inner exception stack trace ---
    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
    at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
    at System.Threading.Tasks.Task.Wait()
-   at Bhaki.API.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Startup.cs:line 143
+   at Dice.API.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Startup.cs:line 143
    at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
    at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
    at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -360,7 +360,7 @@ Error Number:11001,State:0,Class:20
 08/28/2023 22:44:35 +02:00 [Error] - Message: Failed executing DbCommand ("12,190"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
 ""SELECT [b].[Id], [b].[CreatedOn], [b].[Description], [b].[Name], [b].[Price]
 FROM [Branch] AS [b]"
-08/28/2023 22:44:35 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/28/2023 22:44:35 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
  ---> Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.)
  ---> System.ComponentModel.Win32Exception (10060): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.

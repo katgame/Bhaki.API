@@ -23,7 +23,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
-09/12/2023 08:36:23 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).","Path":"/api/Registration/get-dashboard"}
+09/12/2023 08:36:23 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).","Path":"/api/profile/get-dashboard"}
 09/12/2023 08:37:36 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -49,7 +49,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
-09/12/2023 08:37:36 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).","Path":"/api/Registration/get-dashboard"}
+09/12/2023 08:37:36 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).","Path":"/api/profile/get-dashboard"}
 09/12/2023 08:38:16 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -75,9 +75,9 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
-09/12/2023 08:38:16 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).","Path":"/api/Registration/get-dashboard"}
-09/12/2023 09:11:28 +02:00 [Error] - Message: An error occurred using the connection to database '"Bhaki"' on server '"tcp:bhaki.database.windows.net,1433"'.
-09/12/2023 09:11:56 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+09/12/2023 08:38:16 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON. To make it work when using 'JsonSerializer', consider specifying 'JsonNumberHandling.AllowNamedFloatingPointLiterals' (see https://docs.microsoft.com/dotnet/api/system.text.json.serialization.jsonnumberhandling).","Path":"/api/profile/get-dashboard"}
+09/12/2023 09:11:28 +02:00 [Error] - Message: An error occurred using the connection to database '"Dice"' on server '"tcp:Dice.database.windows.net,1433"'.
+09/12/2023 09:11:56 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
  ---> Microsoft.Data.SqlClient.SqlException (0x80131904): A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)
  ---> System.ComponentModel.Win32Exception (10054): An existing connection was forcibly closed by the remote host.
@@ -189,7 +189,7 @@ Error Number:10054,State:0,Class:20
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
    at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
    at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   at Bhaki.API.Controllers.AuthenticationController.GetUsers()
+   at Dice.API.Controllers.AuthenticationController.GetUsers()
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)

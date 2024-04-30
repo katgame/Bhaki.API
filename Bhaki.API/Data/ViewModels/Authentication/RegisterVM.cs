@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.ViewModels.Authentication
+namespace Dice.API.Data.ViewModels.Authentication
 {
     public class RegisterVM
     {
@@ -20,7 +20,5 @@ namespace Bhaki.API.Data.ViewModels.Authentication
         [Required(ErrorMessage = "Role is required")]
         public string Role { get; set; }
 
-        [Required(ErrorMessage = "Branch is required")]
-        public Guid BranchId { get; set; }
     }
 }

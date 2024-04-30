@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "wL9qgBY2T8+jI6+ZWmndJeuQO3NqDJIMBQcatP+//ls=",
-  "Source": "Bhaki.API",
-  "BasePath": "_content/Bhaki.API",
+  "Hash": "CoKWfROsUBh7wrQOEw5KDXD+2pqKlpdEC8KzyXJHtcM=",
+  "Source": "Dice.API",
+  "BasePath": "_content/Dice.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

@@ -2,7 +2,7 @@
 ""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
 FROM [AspNetRoles] AS [a]
 WHERE [a].[NormalizedName] = @__normalizedName_0"
-08/12/2023 15:21:46 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/12/2023 15:21:46 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AspNetRoles'.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -39,7 +39,7 @@ Error Number:208,State:1,Class:16
 ""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
 FROM [AspNetRoles] AS [a]
 WHERE [a].[NormalizedName] = @__normalizedName_0"
-08/12/2023 15:23:10 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/12/2023 15:23:10 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AspNetRoles'.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -73,7 +73,7 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AspNetR
 ClientConnectionId:44ee89f0-40f0-46dd-8f87-9dfa7ff0f58e
 Error Number:208,State:1,Class:16
 08/12/2023 16:30:30 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
-System.InvalidOperationException: Unable to resolve service for type 'Bhaki.API.Interfaces.ICourseService' while attempting to activate 'Bhaki.API.Controllers.CourseController'.
+System.InvalidOperationException: Unable to resolve service for type 'Dice.API.Interfaces.ICourseService' while attempting to activate 'Dice.API.Controllers.CourseController'.
    at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
    at lambda_method302(Closure , IServiceProvider , Object[] )
    at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
@@ -85,4 +85,4 @@ System.InvalidOperationException: Unable to resolve service for type 'Bhaki.API.
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/12/2023 16:30:30 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Unable to resolve service for type 'Bhaki.API.Interfaces.ICourseService' while attempting to activate 'Bhaki.API.Controllers.CourseController'.","Path":"/api/Course/get-all-courses"}
+08/12/2023 16:30:30 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Unable to resolve service for type 'Dice.API.Interfaces.ICourseService' while attempting to activate 'Dice.API.Controllers.CourseController'.","Path":"/api/Course/get-all-courses"}

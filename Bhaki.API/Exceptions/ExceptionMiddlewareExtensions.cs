@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
-using Bhaki.API.Data.ViewModels;
+using Dice.API.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Exceptions
+namespace Dice.API.Exceptions
 {
     public static class ExceptionMiddlewareExtensions
     {

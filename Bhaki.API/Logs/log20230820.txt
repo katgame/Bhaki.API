@@ -1,7 +1,7 @@
 08/20/2023 03:16:36 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentNullException: Value cannot be null. (Parameter 'user')
    at Microsoft.AspNetCore.Identity.UserManager`1.DeleteAsync(TUser user)
-   at Bhaki.API.Controllers.AuthenticationController.DeleteUser(String UserId) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\AuthenticationController.cs:line 131
+   at Dice.API.Controllers.AuthenticationController.DeleteUser(String UserId) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\AuthenticationController.cs:line 131
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -16,7 +16,7 @@ System.ArgumentNullException: Value cannot be null. (Parameter 'user')
 08/20/2023 03:18:23 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentNullException: Value cannot be null. (Parameter 'user')
    at Microsoft.AspNetCore.Identity.UserManager`1.DeleteAsync(TUser user)
-   at Bhaki.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\AuthenticationController.cs:line 131
+   at Dice.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\AuthenticationController.cs:line 131
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -33,9 +33,9 @@ System.ArgumentNullException: Value cannot be null. (Parameter 'user')
 DELETE FROM [AspNetUsers]
 WHERE [Id] = @p0 AND [ConcurrencyStamp] = @p1;
 SELECT @@ROWCOUNT;"
-08/20/2023 04:05:56 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Bhaki.API.Data.AppDbContext"'."
+08/20/2023 04:05:56 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Bhaki\", table \"dbo.RefreshTokens\", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Dice\", table \"dbo.RefreshTokens\", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -60,7 +60,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -86,7 +86,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
 08/20/2023 04:05:56 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -112,7 +112,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.DeleteAsync(TUser user, CancellationToken cancellationToken)
-   at Bhaki.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\AuthenticationController.cs:line 138
+   at Dice.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\AuthenticationController.cs:line 138
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -129,9 +129,9 @@ Error Number:547,State:0,Class:16
 DELETE FROM [AspNetUsers]
 WHERE [Id] = @p0 AND [ConcurrencyStamp] = @p1;
 SELECT @@ROWCOUNT;"
-08/20/2023 04:08:20 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Bhaki.API.Data.AppDbContext"'."
+08/20/2023 04:08:20 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Bhaki\", table \"dbo.RefreshTokens\", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Dice\", table \"dbo.RefreshTokens\", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -155,7 +155,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -180,7 +180,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
 08/20/2023 04:08:21 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -205,7 +205,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.DeleteAsync(TUser user, CancellationToken cancellationToken)
-   at Bhaki.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\AuthenticationController.cs:line 138
+   at Dice.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\AuthenticationController.cs:line 138
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -222,9 +222,9 @@ Error Number:547,State:0,Class:16
 DELETE FROM [AspNetUsers]
 WHERE [Id] = @p0 AND [ConcurrencyStamp] = @p1;
 SELECT @@ROWCOUNT;"
-08/20/2023 04:08:48 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Bhaki.API.Data.AppDbContext"'."
+08/20/2023 04:08:48 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Bhaki\", table \"dbo.RefreshTokens\", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Dice\", table \"dbo.RefreshTokens\", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -247,7 +247,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -271,7 +271,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
 08/20/2023 04:08:48 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -295,7 +295,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.DeleteAsync(TUser user, CancellationToken cancellationToken)
-   at Bhaki.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\AuthenticationController.cs:line 138
+   at Dice.API.Controllers.AuthenticationController.DeleteUser(String userId) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\AuthenticationController.cs:line 138
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -312,9 +312,9 @@ Error Number:547,State:0,Class:16
 DELETE FROM [AspNetUsers]
 WHERE [Id] = @p0 AND [ConcurrencyStamp] = @p1;
 SELECT @@ROWCOUNT;"
-08/20/2023 04:09:33 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Bhaki.API.Data.AppDbContext"'."
+08/20/2023 04:09:33 +02:00 [Error] - Message: An exception occurred in the database while saving changes for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Bhaki\", table \"dbo.RefreshTokens\", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint \"FK_RefreshTokens_AspNetUsers_UserId\". The conflict occurred in database \"Dice\", table \"dbo.RefreshTokens\", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -339,7 +339,7 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Bhaki", table "dbo.RefreshTokens", column 'UserId'.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_RefreshTokens_AspNetUsers_UserId". The conflict occurred in database "Dice", table "dbo.RefreshTokens", column 'UserId'.
 The statement has been terminated.
    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -365,8 +365,8 @@ Error Number:547,State:0,Class:16
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
 08/20/2023 09:37:07 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method308(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -381,11 +381,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:37:08 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:37:08 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 09:40:07 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method308(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -400,11 +400,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:40:07 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:40:07 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 09:43:04 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method308(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -419,11 +419,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:43:04 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:43:04 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 09:44:26 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method308(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -438,11 +438,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:44:26 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:44:26 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 09:44:28 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method308(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -457,11 +457,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:44:28 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:44:28 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 09:45:19 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method64(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -476,11 +476,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:45:20 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:45:20 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 09:52:58 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method64(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -495,11 +495,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 09:52:58 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 09:52:58 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 10:58:13 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 93
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 93
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method398(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -514,7 +514,7 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 10:58:13 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 10:58:13 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 11:26:56 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -537,7 +537,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 11:26:56 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/20/2023 11:26:56 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/20/2023 11:27:06 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -560,7 +560,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 11:27:06 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/20/2023 11:27:06 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/20/2023 11:27:36 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -583,7 +583,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 11:27:36 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/20/2023 11:27:36 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/20/2023 11:29:24 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -606,7 +606,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 11:29:24 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/20/2023 11:29:24 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/20/2023 11:29:24 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -629,7 +629,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 11:29:24 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/20/2023 11:29:24 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/20/2023 11:31:09 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -652,11 +652,11 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 11:31:09 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/20/2023 11:31:09 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/20/2023 12:16:29 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration()
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations()
+   at Dice.API.Data.Services.profileService.Getprofile()
+   at Dice.API.Controllers.profileController.Getprofiles()
    at lambda_method395(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -671,11 +671,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 12:16:29 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 12:16:29 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 12:16:34 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration()
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations()
+   at Dice.API.Data.Services.profileService.Getprofile()
+   at Dice.API.Controllers.profileController.Getprofiles()
    at lambda_method395(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -690,11 +690,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 12:16:34 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 12:16:34 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 12:16:52 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration()
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations()
+   at Dice.API.Data.Services.profileService.Getprofile()
+   at Dice.API.Controllers.profileController.Getprofiles()
    at lambda_method395(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -709,11 +709,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 12:16:52 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 12:16:52 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 12:30:28 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 94
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 94
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method68(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -728,11 +728,11 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 12:30:28 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 12:30:28 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}
 08/20/2023 12:30:41 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Data.Services.RegistrationService.GetRegistration() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Data\Services\RegistrationService.cs:line 94
-   at Bhaki.API.Controllers.RegistrationController.GetRegistrations() in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\RegistrationController.cs:line 42
+   at Dice.API.Data.Services.profileService.Getprofile() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Data\Services\profileService.cs:line 94
+   at Dice.API.Controllers.profileController.Getprofiles() in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\profileController.cs:line 42
    at lambda_method374(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
@@ -747,4 +747,4 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/20/2023 12:30:41 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/Registration/get-all-registrations"}
+08/20/2023 12:30:41 +02:00 [Error] - Message: {"StatusCode":500,"Message":"Object reference not set to an instance of an object.","Path":"/api/profile/get-all-profiles"}

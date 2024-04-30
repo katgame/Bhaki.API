@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Bhaki.API.Data.Models
+namespace Dice.API.Data.Models
 {
     public class DashboardWeekly
     {

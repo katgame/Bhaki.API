@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API
+namespace Dice.API
 {
     public class Program
     {

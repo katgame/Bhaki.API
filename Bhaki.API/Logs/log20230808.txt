@@ -1,5 +1,5 @@
 08/08/2023 12:08:34 +02:00 [Error] - Message: An error occurred using the connection to database '"my-books-db"' on server '"ETR\sqlserver"'.
-08/08/2023 12:08:35 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Bhaki.API.Data.AppDbContext"'."
+08/08/2023 12:08:35 +02:00 [Error] - Message: An exception occurred while iterating over the results of a query for context type '"Dice.API.Data.AppDbContext"'."
 ""Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SNI_PN11, error: 26 - Error Locating Server/Instance Specified)
    at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -55,14 +55,14 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instanc
 ClientConnectionId:00000000-0000-0000-0000-000000000000
 Error Number:-1,State:0,Class:20
 08/08/2023 13:31:56 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
-Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Test/get-test-data" for actions - Bhaki.API.Controllers.v2.TestController.Get (my-books),Bhaki.API.Controllers.v1.TestController.GetV1 (my-books),Bhaki.API.Controllers.v1.TestController.GetV12 (my-books),Bhaki.API.Controllers.v1.TestController.GetV19 (my-books). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Test/get-test-data" for actions - Dice.API.Controllers.v2.TestController.Get (my-books),Dice.API.Controllers.v1.TestController.GetV1 (my-books),Dice.API.Controllers.v1.TestController.GetV12 (my-books),Dice.API.Controllers.v1.TestController.GetV19 (my-books). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
    at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
    at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
    at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwagger(String documentName, String host, String basePath)
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
 08/08/2023 13:39:43 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
-Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Test/get-test-data" for actions - Bhaki.API.Controllers.v2.TestController.Get (my-books),Bhaki.API.Controllers.v1.TestController.GetV1 (my-books),Bhaki.API.Controllers.v1.TestController.GetV12 (my-books),Bhaki.API.Controllers.v1.TestController.GetV19 (my-books). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Test/get-test-data" for actions - Dice.API.Controllers.v2.TestController.Get (my-books),Dice.API.Controllers.v1.TestController.GetV1 (my-books),Dice.API.Controllers.v1.TestController.GetV12 (my-books),Dice.API.Controllers.v1.TestController.GetV19 (my-books). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
    at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
    at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
    at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwagger(String documentName, String host, String basePath)

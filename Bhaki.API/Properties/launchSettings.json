@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Bhaki.API": {
+    "Dice.API": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

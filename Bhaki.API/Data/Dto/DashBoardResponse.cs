@@ -1,9 +1,9 @@
-﻿using Bhaki.API.Data.Models;
+﻿using Dice.API.Data.Models;
 
 using System;
 using System.Collections.Generic;
 
-namespace Bhaki.API.Data.Dto
+namespace Dice.API.Data.Dto
 {
     public class DashBoardResponse
     {

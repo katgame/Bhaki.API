@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.ViewModels.Authentication
+namespace Dice.API.Data.ViewModels.Authentication
 {
     public class AuthResultVM
     {

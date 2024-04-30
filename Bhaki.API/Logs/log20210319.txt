@@ -3,7 +3,7 @@
 03/19/2021 15:06:04 +01:00 [Information] - Message: This is just a log in GetAllPublishers()
 03/19/2021 15:13:58 +01:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.Exception: This is an exception thrown from GetAllPublishers()
-   at Bhaki.API.Controllers.PublishersController.GetAllPublishers(String sortBy, String searchString, Int32 pageNumber) in C:\Users\Author\source\repos\my-books\my-books\Controllers\PublishersController.cs:line 31
+   at Dice.API.Controllers.PublishersController.GetAllPublishers(String sortBy, String searchString, Int32 pageNumber) in C:\Users\Author\source\repos\my-books\my-books\Controllers\PublishersController.cs:line 31
    at lambda_method2(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()

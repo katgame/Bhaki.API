@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.ViewModels.Authentication
+namespace Dice.API.Data.ViewModels.Authentication
 {
     public class LoginVM
     {

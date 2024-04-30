@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.Models
+namespace Dice.API.Data.Models
 {
     public class Address
     {

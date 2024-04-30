@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Enums
+namespace Dice.API.Enums
 {
     public enum AccountStatus
     {

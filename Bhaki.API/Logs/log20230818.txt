@@ -21,7 +21,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/18/2023 15:37:16 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/18/2023 15:37:16 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/18/2023 15:38:12 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -45,7 +45,7 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/18/2023 15:38:12 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/18/2023 15:38:12 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}
 08/18/2023 15:39:21 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.ArgumentException: .NET number values such as positive and negative infinity cannot be written as valid JSON.
    at System.Text.Json.ThrowHelper.ThrowArgumentException_ValueNotSupported()
@@ -69,4 +69,4 @@ System.ArgumentException: .NET number values such as positive and negative infin
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
-08/18/2023 15:39:21 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/Registration/get-dashboard"}
+08/18/2023 15:39:21 +02:00 [Error] - Message: {"StatusCode":500,"Message":".NET number values such as positive and negative infinity cannot be written as valid JSON.","Path":"/api/profile/get-dashboard"}

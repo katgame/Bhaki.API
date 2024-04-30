@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Data.Paging
+namespace Dice.API.Data.Paging
 {
     public class PaginatedList<T> : List<T>
     {

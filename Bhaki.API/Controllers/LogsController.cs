@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Bhaki.API.Data.Services;
-using Bhaki.API.Data.ViewModels.Authentication;
+using Dice.API.Data.Services;
+using Dice.API.Data.ViewModels.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Controllers
+namespace Dice.API.Controllers
 {
     [Authorize(Roles = UserRoles.Admin)]
     [Route("api/[controller]")]

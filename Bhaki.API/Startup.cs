@@ -12,18 +12,18 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Bhaki.API.Data;
-using Bhaki.API.Data.Models;
-using Bhaki.API.Data.Services;
-using Bhaki.API.Exceptions;
+using Dice.API.Data;
+using Dice.API.Data.Models;
+using Dice.API.Data.Services;
+using Dice.API.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bhaki.API.Interfaces;
+using Dice.API.Interfaces;
 
-namespace Bhaki.API
+namespace Dice.API
 {
     public class Startup
     {
@@ -48,9 +48,9 @@ namespace Bhaki.API
             //Configure the Services
 
             services.AddTransient<LogsService>();
-            services.AddTransient<IRegistrationService, RegistrationService>();
-            services.AddTransient<IBranchService, BranchService>();
-            services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IDashboardService, DashboardService>();
+            services.AddTransient<IAccountService, AccountService>();
 
             services.AddApiVersioning(config => 
             {
@@ -94,7 +94,7 @@ namespace Bhaki.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bhaki.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dice.API", Version = "v1" });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
           
@@ -104,8 +104,11 @@ namespace Bhaki.API
                                   builder =>
                                   {
                                       builder
-                                        .WithOrigins("http://localhost:4200") // specifying the allowed origin
-                                        .WithMethods("GET","POST","PUT","DELETE") // defining the allowed HTTP method
+                                        //.WithOrigins("http://localhost:4200") // specifying the allowed origin
+                                        //.WithOrigins("http://160.119.253.205:81/") // specifying the allowed origin
+                                        //.WithOrigins("https://160.119.253.205:444/") // specifying the allowed origin
+                                        //.WithMethods("GET","POST","PUT","DELETE","") // defining the allowed HTTP method
+                                        .AllowAnyMethod().AllowAnyOrigin()
                                         .AllowAnyHeader(); // allowing any header to be sent
                                   });
             });
@@ -118,7 +121,7 @@ namespace Bhaki.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bhaki.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dice.API v1"));
             }
 
             app.UseHttpsRedirection();

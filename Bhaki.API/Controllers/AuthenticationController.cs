@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Bhaki.API.Data;
-using Bhaki.API.Data.Models;
-using Bhaki.API.Data.ViewModels.Authentication;
+using Dice.API.Data;
+using Dice.API.Data.Models;
+using Dice.API.Data.ViewModels.Authentication;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,12 +14,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Bhaki.API.Data.Dto;
-using Bhaki.API.Interfaces;
+using Dice.API.Data.Dto;
+using Dice.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Bhaki.API.Controllers
+namespace Dice.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -31,21 +31,26 @@ namespace Bhaki.API.Controllers
         
         private readonly AppDbContext _context;
         private readonly IConfiguration _configuration;
-        private readonly IBranchService _branch;
         private readonly ILogger _logger;
+        private readonly IProfileService _profileService;
+        private readonly IAccountService _accountService;
         public AuthenticationController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             AppDbContext context,
-            IConfiguration configuration, IBranchService branch, ILogger<AuthenticationController> logger)
+            IConfiguration configuration, 
+            ILogger<AuthenticationController> logger,
+            IProfileService profileService,
+            IAccountService accountService)
         {
             _logger = logger;
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
             _configuration = configuration;
-            _branch = branch;
+            _profileService = profileService;
+            _accountService = accountService;
         }
-        [Authorize(Roles = UserRoles.Admin)]
+        //[Authorize(Roles = UserRoles.Admin)]
         [HttpPost("register-user")]
         public async Task<IActionResult> Register([FromBody]RegisterVM payload)
         {
@@ -71,11 +76,7 @@ namespace Bhaki.API.Controllers
                     LockoutEnabled = false
                 };
 
-                var branch = _context.Branch.SingleOrDefault(x => x.Id == payload.BranchId);
-                if (branch == null)
-                {
-                    return BadRequest($"Branch {payload.BranchId} doesnt exists");
-                }
+
                 var result = await _userManager.CreateAsync(newUser, payload.Password);
 
                 if (!result.Succeeded)
@@ -83,38 +84,18 @@ namespace Bhaki.API.Controllers
                     return BadRequest("User could not be created!");
                 }
                 await _userManager.SetLockoutEnabledAsync(newUser, false);
-                //var Role = await _userManager.FindByNameAsync(payload.Role);
 
-                var userBranch = new UserBranch
-                {
-                    BranchId = payload.BranchId,
-                    UserId = Guid.Parse(newUser.Id)
-                };
-                _branch.SaveUserBranch(userBranch);
+                var profileCreated = _profileService.CreateProfile(Guid.Parse(newUser.Id));
 
                 switch (payload.Role)
                 {
                     case "Admin":
                         await _userManager.AddToRoleAsync(newUser, UserRoles.Admin);
                         break;
-                    case "Clerk":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Clerk);
+                    case "Player":
+                        await _userManager.AddToRoleAsync(newUser, UserRoles.Player);
                         break;
-                    case "Assessor":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Assessor);
-                        break;
-                    case "Moderator":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Moderator);
-                        break;
-                    case "Finance":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Finance);
-                        break;
-                    case "Manager":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.Manager);
-                        break;
-                    case "SuperUser":
-                        await _userManager.AddToRoleAsync(newUser, UserRoles.SuperUser);
-                        break;
+                  
                 
                 }
 
@@ -129,18 +110,16 @@ namespace Bhaki.API.Controllers
         [HttpGet("all-user")]
         public async Task<IActionResult> GetUsers()
         {
-            var userBranches = _context.UserBranch.ToList();
-            var branches = _context.Branch.ToList();
             var users = _userManager.Users.ToList();
             var userRole =  _roleManager.Roles.ToList();
-            var response = (from user in users let userBranchId = userBranches.SingleOrDefault(x => x.UserId == Guid.Parse(user.Id))!.BranchId select new UserRequest { User = user, Branch = branches.SingleOrDefault(x => x.Id == userBranchId) }).ToList();
+            var response = users;
             return Ok(response);
         }
         [Authorize(Roles = UserRoles.Admin)]
         [HttpGet("get-user-roles")]
         public async Task<IActionResult> GetUserRoles()
         {
-            var roles =  _roleManager.Roles.Where(x => (x.Name == "Admin") || (x.Name == "Clerk")).ToList();
+            var roles =  _roleManager.Roles.Where(x => (x.Name == "Admin") || (x.Name == "Player")).ToList();
             return Ok(roles);
         }
         [Authorize(Roles = UserRoles.Admin)]
@@ -189,8 +168,7 @@ namespace Bhaki.API.Controllers
                 _logger.LogTrace("Token value: " , tokenValue);
                 var userRole = await _userManager.GetRolesAsync(user);
                 _logger.LogTrace("userRole value: ", userRole);
-                var branch = _context.UserBranch.Where(x => x.UserId == Guid.Parse(user.Id)).FirstOrDefault();
-                _logger.LogTrace("branch value: ", branch);
+                var accountInfo = _accountService.GetAccountInformation(Guid.Parse(user.Id));
                 var loginRespose = new LoginRespose
                 {
                     token = tokenValue,
@@ -200,9 +178,8 @@ namespace Bhaki.API.Controllers
                         Role = (List<string>)userRole,
                         Name = user.UserName,
                         Email = user.Email,
-                        BranchId = branch.BranchId
-
-                    }
+                    },
+                    userAccount = accountInfo
                 };
                 return Ok(loginRespose);
             }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Controllers.v1
+namespace Dice.API.Controllers.v1
 {
     [ApiVersion("1.0")]
     [ApiVersion("1.2")]

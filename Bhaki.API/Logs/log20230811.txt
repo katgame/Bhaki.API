@@ -1,6 +1,6 @@
 08/11/2023 10:39:23 +02:00 [Error] - Message: An unhandled exception has occurred while executing the request.
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at Bhaki.API.Controllers.AuthenticationController.Login(LoginVM payload) in C:\Code\mabusha\Bhaki\Bhaki.API2\Bhaki.API\Bhaki.API\Controllers\AuthenticationController.cs:line 139
+   at Dice.API.Controllers.AuthenticationController.Login(LoginVM payload) in C:\Code\mabusha\Dice\Dice.API2\Dice.API\Dice.API\Controllers\AuthenticationController.cs:line 139
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)

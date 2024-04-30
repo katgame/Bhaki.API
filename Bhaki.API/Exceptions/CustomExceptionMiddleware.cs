@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Bhaki.API.Data.ViewModels;
+using Dice.API.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.Exceptions
+namespace Dice.API.Exceptions
 {
     public class CustomExceptionMiddleware
     {

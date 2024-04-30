@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YnnndrmDHRIMCwiQKbht/Fq1nOhmDhJgW+tkxAwMvLKfKByCg2ryQBFc2kyPyms7xJO8k9QAACV23p9lLoravQ==",
+  "dgSpecHash": "6JCM5TUmUpwhimbIvK4NKDOD06mqxrMmCjhEA/ryukmn6PYspfo0cPqXKSTKt69RcHm4FmxLIySBw7mXu+dBtw==",
   "success": true,
-  "projectFilePath": "C:\\Code\\mabusha\\Bhaki\\Bhaki.API2\\Bhaki.API\\Bhaki.API\\Bhaki.API.csproj",
+  "projectFilePath": "C:\\Code\\mabusha\\dice-app-api\\dice-api\\Bhaki.API\\Dice.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

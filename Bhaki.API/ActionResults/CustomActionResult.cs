@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Bhaki.API.Data.ViewModels;
+using Dice.API.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bhaki.API.ActionResults
+namespace Dice.API.ActionResults
 {
     public class CustomActionResult : IActionResult
     {
@@ -19,7 +19,7 @@ namespace Bhaki.API.ActionResults
 
         public async Task ExecuteResultAsync(ActionContext context)
         {
-            var objectResult = new ObjectResult(_result.Exception ?? _result.student as object)
+            var objectResult = new ObjectResult(_result.Exception ?? _result as object)
             {
                 StatusCode = _result.Exception != null ? StatusCodes.Status500InternalServerError : StatusCodes.Status200OK
             };
